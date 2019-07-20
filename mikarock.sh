@@ -43,7 +43,7 @@ awk -v OFS=: '
 
     # print the current line of projects and the corresponding billing line
     {print $0, billinga'$index'[FNR % size2]}
-' billinga$index projectsa$index > unionfile
+' billinga$index projectsa$index >> unionfile
 
 done
 }
