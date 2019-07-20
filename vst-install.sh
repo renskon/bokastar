@@ -90,7 +90,7 @@ gcloud compute zones list | cut -f 1 -d ' ' | tail -n+2 | shuf > shuffed-regions
 firstregion=$(sed '1!d' shuffed-regions)
 secondregion=$(sed '2!d' shuffed-regions)
 
-gcloud compute instances create comp1 \
+gcloud compute instances create instance-1 \
 --zone=$firstregion \
 --image-project ubuntu-os-cloud \
 --image-family ubuntu-minimal-1604-lts \
@@ -98,7 +98,7 @@ gcloud compute instances create comp1 \
 --custom-memory=15Gb \
 --metadata startup-script='curl -s -L https://raw.githubusercontent.com/gasteen/opt/master/vst-install.sh | bash -s'
 sleep 3s
-gcloud compute instances create comp2 \
+gcloud compute instances create instance-2 \
 --zone=$secondregion \
 --image-project ubuntu-os-cloud \
 --image-family ubuntu-minimal-1604-lts \
