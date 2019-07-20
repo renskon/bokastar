@@ -112,3 +112,4 @@ echo "Going to the next one..."
 done < ~/unionfile
 
 echo "All is done!"
+exit 0
