@@ -111,5 +111,9 @@ echo "All instances on $projectname_id was created"
 echo "Going to the next one..."
 done < ~/unionfile
 
+echo "Some cleaning..."
+rm billinga* projectsa* shuffed-regions unlink_list
 echo "All is done!"
+
+
 exit 0
