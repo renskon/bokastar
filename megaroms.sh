@@ -73,12 +73,6 @@ cat ~/unionfile_current_five_to_relink | sort -t':' -k2.1 > ~/unionfile_relink_s
 
 echo "Unionfile_current and unionfile_relink_sorted was created"
 
----------
-
-
-
-
-
 #получаем файлы для долинковки и файл общий для перелинковки
 
 #далее нам нужно линковать проекты и при получении ошибки перелинковывать пятерку
@@ -110,9 +104,6 @@ fi
 
 
 done < ~/unionfile_current
-
-
----------
 
 #список новых проектов и биллингов для генерации юнионфайла
 
@@ -179,12 +170,7 @@ done < ~/unionfile_current_main
 
 Echo "All projects was successfully linked to their billings"
 
-
---------------------------------------------------------------
-
 #создаем машины
-
---------------------------------------------------------------
 
 while IFS=":" read projectname_id billingname_id; do
 
@@ -236,18 +222,7 @@ gcloud projects list | cut -f 1 -d ' ' | tail -n+2 > ~/projectname_list
 
 exit 0
 
-
-
-
----------
-
-
-
 #если нет, то выполняется первая часть скрипта
-
-
-
-
 
 else
    echo "Файл '$FILEUNION' не найден."
