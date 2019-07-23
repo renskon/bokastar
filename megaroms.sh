@@ -10,8 +10,8 @@ if [ -f $FILEUNION ]; then
    echo "Файл '$FILEUNION' существует."
    echo "Starting one more time script now..."
 
-mv ~/projectname_list ~/projectname_list_previous
-mv ~/billings_list ~/billings_list_previous
+cat ~/unionfile | cut -d":" -f1 | uniq > ~/projectname_list_previous
+cat ~/unionfile | cut -d":" -f2 | uniq > ~/billings_list_previous
 
 function create_projects(){
 newprojectname=$(gpw 1 4)-$(gpw 1 5)-$(gpw 1 6)
