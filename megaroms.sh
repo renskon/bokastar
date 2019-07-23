@@ -58,7 +58,7 @@ sleep 8
 
 
 N=5
-while IFS=" " read -r nline n billingname_to_add_id; do
+while IFS=" " read -r n billingname_to_add_id; do
   if [ $n -lt $N ] # если $n < $N
   then
     
