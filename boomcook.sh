@@ -131,7 +131,7 @@ else
 echo ""
 echo "Generating list projects and billings for unlink"
 echo ""
-	grep '$billingname_id' ~/unionfile_relink_sorted > ~/unlink_list
+grep "$billingname_id" ~/unionfile_relink_sorted > ~/unlink_list
 echo ""
 cat ~/unlink_list
 echo ""
@@ -201,37 +201,37 @@ awk -v OFS=: '
 done
 }
 
-generate_project_billing_list
+generate_project_billing_list_main
 echo "Projects and billings list was successfully generated"
 
 echo ""
 cat ~/unionfile_current_main
 sleep 5
 
-while IFS=":" read projectname_id billingname_id; do
+while IFS=":" read projectname_id_main billingname_id_main; do
 
 function link_to_billing(){
-gcloud beta billing projects link $projectname_id --billing-account $billingname_id
+gcloud beta billing projects link $projectname_id_main --billing-account $billingname_id_main
 }
 
 
 if link_to_billing ; then
-    echo "Project $projectname_id successfully linked to $billingname_id"
+    echo "Project $projectname_id_main successfully linked to $billingname_id_main"
 else
     echo "Error limit was detected. Now we go to unlink and link one more time"
 	
-	grep '$billingname_id' ~/unionfile_current_main > ~/unlink_list_main
+	grep "$billingname_id_main" ~/unionfile_current_main > ~/unlink_list_main
 	cat ~/unlink_list_main
 	sleep 4
 	
-	while IFS=":" read unlink_projectname_id current_billing_id; do
-	gcloud beta billing projects unlink $unlink_projectname_id
-	echo "$unlink_projectname_id succesfully unlinked from $current_billing_id"
+	while IFS=":" read unlink_projectname_id_main current_billing_id_main; do
+	gcloud beta billing projects unlink $unlink_projectname_id_main
+	echo "$unlink_projectname_id_main succesfully unlinked from $current_billing_id_main"
 	done < ~/unlink_list_main
 	
-	while IFS=":" read unlink_projectname_id current_billing_id; do
-	gcloud beta billing projects link $unlink_projectname_id --billing-account $current_billing_id
-	echo "unlink and link $unlink_projectname_id to $current_billing_id successfully done!"
+	while IFS=":" read unlink_projectname_id_main current_billing_id_main; do
+	gcloud beta billing projects link $unlink_projectname_id_main --billing-account $current_billing_id_main
+	echo "unlink and link $unlink_projectname_id_main to $current_billing_id_main successfully done!"
     done < ~/unlink_list_main
 fi
 
@@ -247,9 +247,9 @@ sleep 6
 echo ""
 
 
-while IFS=":" read projectname_id billingname_id; do
+while IFS=":" read projectname_id_union billingname_id_union; do
 
-gcloud config set project $projectname_id	
+gcloud config set project $projectname_id_union	
 gcloud services enable compute.googleapis.com
 
 
