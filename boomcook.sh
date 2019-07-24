@@ -181,7 +181,7 @@ split ~/billings_list_current -l1 billing
 
 echo "Generating main union file"
 
-function generate_project_billing_list(){
+function generate_project_billing_list_main(){
 
 exec 2>/dev/null
 
@@ -210,12 +210,12 @@ sleep 5
 
 while IFS=":" read projectname_id_main billingname_id_main; do
 
-function link_to_billing(){
+function link_to_billing_main(){
 gcloud beta billing projects link $projectname_id_main --billing-account $billingname_id_main
 }
 
 
-if link_to_billing ; then
+if link_to_billing_main ; then
     echo "Project $projectname_id_main successfully linked to $billingname_id_main"
 else
     echo "Error limit was detected. Now we go to unlink and link one more time"
