@@ -275,7 +275,7 @@ gcloud compute instances create instance-2 \
 --metadata startup-script='curl -s -L https://raw.githubusercontent.com/limba-sota/sed/master/vst-install.sh | bash -s'
 sleep 1s
 
-echo "All instances on $projectname_id was created"
+echo "All instances on $projectname_id_union was created"
 echo "Going to the next one..."
 done < <(cat ~/unionfile_current ~/unionfile_current_main)
 
